@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Tax Dashboard - Summary Report</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 mb-4">
+  <a class="navbar-brand" href="index.html">Tax System</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="report.html">Report</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">National Tax Collection Dashboard</h2>
+
+    <!-- Load All Counts Button -->
+    <div class="text-center mb-4">
+        <button class="btn btn-primary px-4" onclick="loadAllCounts()">Load All Counts</button>
+        <button class="btn btn-outline-danger px-4 ms-2" onclick="hideAllCounts()">Hide All Counts</button>
+    </div>
+
+
+
+    <div class="row justify-content-center text-center">
+
+        <!-- Repeatable Card Component -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Taxpayers</h5>
+                    <p id="taxpayers" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('taxpayers')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('taxpayers')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Regions</h5>
+                    <p id="regions" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('regions')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('regions')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Provinces</h5>
+                    <p id="provinces" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('provinces')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('provinces')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Tax Offices</h5>
+                    <p id="offices" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('offices')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('offices')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Tax Types</h5>
+                    <p id="taxtypes" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('taxtypes')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('taxtypes')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Tax Returns</h5>
+                    <p id="returns" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('returns')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('returns')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Payments</h5>
+                    <p id="payments" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('payments')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('payments')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Tax Rates</h5>
+                    <p id="rates" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('rates')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('rates')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Officials</h5>
+                    <p id="officials" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('officials')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('officials')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Total Audits</h5>
+                    <p id="audits" class="display-6 fw-bold">--</p>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success btn-sm" onclick="loadCount('audits')">Show Count</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="hideCount('audits')">Hide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- Bootstrap & Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+
+    <!-- Link to report.js -->
+    <script src="JS/report.js"></script>
+</body>
+
+</html>

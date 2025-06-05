@@ -7,87 +7,111 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/',async(req,res)=>{
-    try{
-        res.json('WELCOME TO HR API');
-    }catch(err){
-        res.status(500).json({Error:err.message});
+app.get('/', async (req, res) => {
+    try {
+        res.json('WELCOME TO NATIONAL TAX COLLECTION API');
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
     }
 });
 
-app.get('/country',async(req,res)=>{
-    try{
-        const result = await pool.query('select * from countries');
+const tables = ['regions', 'provinces', 'tax_offices', 'tax_types', 'taxpayers', 'tax_returns', 'payments', 'tax_rates', 'officials', 'audits'];
+
+// GET all data routes
+for (const table of tables) {
+    app.get(`/${table}`, async (req, res) => {
+        try {
+            const result = await pool.query(`SELECT * FROM ${table}`);
+            res.json(result.rows);
+        } catch (err) {
+            res.status(500).json({ Error: err.message });
+        }
+    });
+}
+
+// GET count routes
+app.get('/totaltaxpayers', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(taxpayer_id) FROM taxpayers');
         res.json(result.rows);
-    }catch(err)
-    {
-        res.status(500).json({Error:err.message});
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
     }
 });
 
-app.get('/emp',async(req,res)=>{
-    try{
-        const result = await pool.query('select * from employees');
+app.get('/totalregions', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(region_id) FROM regions');
         res.json(result.rows);
-    }catch(err)
-    {
-        res.status(500).json({Error:err.message});
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
     }
 });
 
-app.get('/region',async(req,res)=>{
-    try{
-        const result = await pool.query('select * from regions');
+app.get('/totalprovinces', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(province_id) FROM provinces');
         res.json(result.rows);
-    }catch(err)
-    {
-        res.status(500).json({Error:err.message});
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
     }
 });
 
-app.get('/job',async(req,res)=>{
-    try{
-        const result = await pool.query('select * from jobs');
+app.get('/totaltaxoffices', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(office_id) FROM tax_offices');
         res.json(result.rows);
-    }catch(err)
-    {
-        res.status(500).json({Error:err.message});
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
     }
 });
 
-app.get('/tolemp',async(req,res)=>{
-    try{
-        const result = await pool.query('select count(employee_id) from employees');
+app.get('/totaltaxreturns', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(return_id) FROM tax_returns');
         res.json(result.rows);
-    }catch(err)
-    {
-        res.status(500).json({Error:err.message});
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
     }
 });
 
-app.get('/tolcty',async(req,res)=>{
-    try{
-        const result = await pool.query('select count(country_id) from countries');
+app.get('/totalpayments', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(payment_id) FROM payments');
         res.json(result.rows);
-    }catch(err)
-    {
-        res.status(500).json({Error:err.message});
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
     }
 });
 
-app.get('/tolreg',async(req,res)=>{
-    try{
-        const result = await pool.query('select count(region_id) from regions');
+app.get('/totaltaxrates', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(rate_id) FROM tax_rates');
         res.json(result.rows);
-    }catch(err)
-    {
-        res.status(500).json({Error:err.message});
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
     }
 });
 
+app.get('/totalofficials', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(official_id) FROM officials');
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
+    }
+});
 
+app.get('/totalaudits', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT COUNT(audit_id) FROM audits');
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
+    }
+});
 
 const PORT = process.env.PORT;
-app.listen(PORT,()=>{
-    console.log(`Connected Succefully....on PORT ${PORT}`);
+app.listen(PORT, () => {
+    console.log(`Connected Successfully on PORT ${PORT}`);
 });
