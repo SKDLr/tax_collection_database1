@@ -1,0 +1,23 @@
+/* Shared styles for all pages */
+
+.navbar-brand {
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+}
+
+.display-6 {
+  font-size: 2rem;
+}
+
+.btn-group .btn {
+  margin-right: 0.25rem;
+}
