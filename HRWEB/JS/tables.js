@@ -1,4 +1,5 @@
-const base = "https://friendly-bassoon-wr7g69wxrp4p25vr7-6007.app.github.dev";
+window.addEventListener("DOMContentLoaded", () => {
+const base = "https://effective-disco-v6vq4gxw679qhw4g5-6008.app.github.dev";
 
 fetch(`${base}/regions`).then(r => r.json()).then(data => {
     const tbody = document.querySelector("#regionstable tbody");
@@ -69,3 +70,6 @@ fetch(`${base}/audits`).then(r => r.json()).then(data => {
         tbody.innerHTML += `<tr><td>${item.audit_id}</td><td>${item.taxpayer_id}</td><td>${item.audit_date}</td><td>${item.findings}</td><td>${item.officer_id}</td></tr>`;
     });
 });
+});
+
+// gi
