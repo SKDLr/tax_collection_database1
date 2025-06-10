@@ -1,4 +1,4 @@
-const baseURL = "https://effective-disco-v6vq4gxw679qhw4g5-6008.app.github.dev";
+const baseURL = "https://symmetrical-parakeet-r4gp9rjw4x74f6gg-6008.app.github.dev";
 
 const endpoints = {
     taxpayers: "/totaltaxpayers",
